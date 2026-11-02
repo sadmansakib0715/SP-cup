@@ -1,0 +1,9 @@
+numpy>=1.24
+scipy>=1.10
+opencv-python>=4.8        # Haar + YuNet (cv2.FaceDetectorYN)
+matplotlib>=3.7           # Bland-Altman plots
+scikit-image>=0.21        # synthetic test videos only
+pytest                    # tests
+# optional
+# mediapipe>=0.10         # FaceLandmarker (.task model) - best landmarks
+# torch>=2.1              # neural candidate via robust_rppg.neural.ToolboxModel
