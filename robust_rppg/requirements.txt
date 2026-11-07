@@ -1,6 +1,6 @@
 numpy>=1.24
 scipy>=1.10
-opencv-python>=4.8        # Haar + YuNet (cv2.FaceDetectorYN)
+opencv-python>=4.8,<5   # Haar + YuNet (cv2.FaceDetectorYN); 5.x drops CascadeClassifier
 matplotlib>=3.7           # Bland-Altman plots
 scikit-image>=0.21        # synthetic test videos only
 pytest                    # tests

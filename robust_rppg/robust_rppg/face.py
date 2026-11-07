@@ -206,7 +206,13 @@ class FaceTracker:
                 s = (int(max(0, x - 0.6 * bw)), int(max(0, y - 0.6 * bh)),
                      int(min(w, x + 1.6 * bw)), int(min(h, y + 1.6 * bh)))
                 dets += self.det(frame, s)
-            return dets
+            # overlapping search windows return the same face more than once; each
+            # unmatched copy would spawn a track that searches again (runaway growth)
+            keep = []
+            for d in sorted(dets, key=lambda d: -d.box[2] * d.box[3]):
+                if all(_iou(d.box, k.box) < 0.5 for k in keep):
+                    keep.append(d)
+            return keep
         return self.det(frame)
 
     def update(self, frame, t: float) -> list[Track]:
